@@ -81,8 +81,9 @@ submitBtn.addEventListener('click', function(event) {
 
     //show results
     resultElement.textContent = `Your Life Path Number is: ${lifePathNumber}`;
+    showLifePathInfo(lifePathNumber); 
     //shows the explanation in the 'lifePathInfo' element
-    lifePathInfo.textContent = numberExplanation(lifePathNumber);
+    // lifePathInfo.textContent = numberExplanation(lifePathNumber);
 });
 
 //Functon to calculate the life path number
@@ -113,6 +114,18 @@ function reduceNumber(num) {
     }
     return num; // return number result
 }
-// Function that gives the explanation of life  path number
 
+// Function to show explanation for each result
+function showLifePathInfo(lifePathNumber) {
+    // Hide all explanations  at first
+    const explanations = document.querySelectorAll('.lifePathExplanation');
+    explanations.forEach(explanation => {
+        explanation.style.display = 'none';
+    });
 
+ // Show the explanation for Life Path Number
+ const selectedExplanation = document.getElementById(`lifePath${lifePathNumber}`);
+ if (selectedExplanation) {
+     selectedExplanation.style.display = 'block'; 
+ }
+}
