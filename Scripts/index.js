@@ -94,9 +94,69 @@ function calculateLifePathNumber(day, month, year) {
     const yearSum = sumDigits(year);
 
     const total = daySum + monthSum + yearSum
-    return reduceNumber(total); //Keeps breaking down the number until it reaches a single digit or a master number
+     return reduceNumber(total); //Keeps breaking down the number until it reaches a single digit or a master number
+//     offerTip(lifePathNumber)
+//     showLifePathInfo(lifePathNumber);
+   
 }
+// offerTip(lifePathNumber)
+// function offerTip(lifePathNumber) {
+//     // Check if a tip for this Life Path Number already exists in localStorage
+//     if (!window.localStorage.getItem(`tip_shown_${lifePathNumber}`)) {
+//         const tipText = generateTip(lifePathNumber);
+        
+//         // Create a new div for the tip message
+//         const tipDiv = document.createElement('div');
+//         tipDiv.classList.add('tip-container');
+//         tipDiv.innerHTML = `
+//             <p>Would you like a tip for Life Path Number ${lifePathNumber}? <strong>${tipText}</strong></p>
+//             <button id="tip-btn">Yes, tell me!</button>
+//         `;
 
+//         // Append the tip to the result section
+//         const resultDiv = document.getElementById('result');
+//         resultDiv.appendChild(tipDiv);
+
+//         // Add event listener to handle the user's response
+//         document.getElementById('tip-btn').addEventListener('click', function() {
+//             showTipDetails(lifePathNumber); // Function to show the detailed tip
+//             tipDiv.remove(); // Remove the tip prompt once user agrees
+//             // Store that the user has seen the tip to prevent showing it again
+//             window.localStorage.setItem(`tip_shown_${lifePathNumber}`, 'true');
+//         });
+//     }
+// }
+// function generateTip(lifePathNumber) {
+//     const tips = {
+//         1: "Focus on harnessing your natural leadership abilities. Trust your intuition and take bold steps.",
+//         2: "Remember to prioritize self-care while being the peacemaker. Setting boundaries is essential.",
+//         3: "Balance your creative pursuits with financial responsibility. Keep a positive outlook in all situations.",
+//         4: "Find a balance between your grounded nature and relaxation. Don't let rigidity hold you back.",
+//         5: "Embrace your adventurous spirit but also stay grounded to avoid distractions.",
+//         6: "Make sure to maintain balance when giving to others. Your self-care matters too.",
+//         7: "Embrace your spiritual journey and seek deeper connections to stay centered.",
+//         8: "Don't let the pursuit of success overwhelm other aspects of your life. Balance is key.",
+//         9: "Focus on giving back to others, but ensure you also take care of your own emotional needs.",
+//         11: "Embrace your intuition and spiritual gifts, but practice grounding to avoid overwhelm.",
+//         22: "Your ambition is strong, but make sure to pace yourself and focus on long-term impact.",
+//         33: "Focus on selfless service and strive to bring balance to your personal life and ambitions."
+//     };
+//     return tips[lifePathNumber] || "Explore your life path for more tips!";
+// }
+
+// // Function to show detailed tip for the user
+// function showTipDetails(lifePathNumber) {
+//     const tipDetails = document.createElement('div');
+//     tipDetails.classList.add('tip-details');
+//     tipDetails.innerHTML = `
+//         <p><strong>Detailed Tip for Life Path Number ${lifePathNumber}:</strong></p>
+//         <p>${generateTip(lifePathNumber)} It is important to stay true to your purpose and not get swayed by external pressures.</p>
+//     `;
+
+//     // Append the tip details below the result
+//     const resultDiv = document.getElementById('result');
+//     resultDiv.appendChild(tipDetails);
+// }
 // Function to iterate through all numbers after turning into a string
 function sumDigits(num) {
     let sum = 0;
