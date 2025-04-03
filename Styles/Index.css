@@ -1,1 +1,97 @@
+/* General Reset */
+html {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 1000;
+    font-size: large;
+
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    background: none;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+    height: 100vh;
+    font: 1000;
+    font-size: x-large;
+    background-color:mintcream;
+}
+h2 {
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+
+
+img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+   border-radius: 8px;
+}
+
+input[type="date"] {
+    background-color:cadetblue;
+    text-align: center;
+    padding: 5px;
+    margin: 8px;
+    width: 25%;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: border-color 0.3s;
+}
+
+input[type="date"]:focus {
+    border-color: #000000;
+    outline: none;
+    width: 25%;
+    background-color: cornsilk;
+}
+
+/* Submit button styling */
+button {
+    background-color: #000000;
+    color: white;
+    padding: 6px 6px;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor:pointer;
+    transition: background-color 0.3s;
+    width: 50%;
+}
+
+button:hover {
+    background-color: orange;
+}
+/* Keyframes for fade-in and slide-up animation */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Start below */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End at normal position */
+    }
+}
+
+/* Apply animation to result text */
+#result {
+    animation: fadeInSlideUp 2s ease-in-out;
+    color: orange;
+}
+
+
+
 
