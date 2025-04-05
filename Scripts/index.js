@@ -51,10 +51,10 @@
 // function numberExplanation(number) {
 //     1: "You're natural leader, independent thinker, and someone with a pioneering spirit, often drawn to careers that allow them to be their own boss"
 //     2: ""
-    
+
 // }
 // Cache elements using getElementById
- //------------SECOND ATTEMPT
+//------------SECOND ATTEMPT
 
 const submitBtn = document.getElementById('submit-btn');
 const birthdateInput = document.getElementById('birthdate');
@@ -63,7 +63,7 @@ const lifePathInfo = document.querySelector('#lifePathInfo');
 
 //Event listener for form submission
 //Function runs when user clicks the "Find mt life path number"
-submitBtn.addEventListener('click', function(event) {
+submitBtn.addEventListener('click', function (event) {
     event.preventDefault(); //Prevents form from reloading the page
     //Gets the value from the input
     const birthdate = birthdateInput.value;
@@ -81,7 +81,7 @@ submitBtn.addEventListener('click', function(event) {
 
     //show results
     resultElement.textContent = `Your Life Path Number is: ${lifePathNumber}`;
-    showLifePathInfo(lifePathNumber); 
+    showLifePathInfo(lifePathNumber);
     //shows the explanation in the 'lifePathInfo' element
     // lifePathInfo.textContent = numberExplanation(lifePathNumber);
     offerTip(lifePathNumber);//Offers tip based oon life path number
@@ -95,17 +95,17 @@ function calculateLifePathNumber(day, month, year) {
     const yearSum = sumDigits(year);
 
     const total = daySum + monthSum + yearSum
-     return reduceNumber(total); //Keeps breaking down the number until it reaches a single digit or a master number
-//     offerTip(lifePathNumber)
-//     showLifePathInfo(lifePathNumber);
-   
+    return reduceNumber(total); //Keeps breaking down the number until it reaches a single digit or a master number
+    //     offerTip(lifePathNumber)
+    //     showLifePathInfo(lifePathNumber);
+
 }
 // offerTip(lifePathNumber)
 // function offerTip(lifePathNumber) {
 //     // Check if a tip for this Life Path Number already exists in localStorage
 //     if (!window.localStorage.getItem(`tip_shown_${lifePathNumber}`)) {
 //         const tipText = generateTip(lifePathNumber);
-        
+
 //         // Create a new div for the tip message
 //         const tipDiv = document.createElement('div');
 //         tipDiv.classList.add('tip-container');
@@ -184,22 +184,22 @@ function showLifePathInfo(lifePathNumber) {
         explanation.style.display = 'none';
     });
 
- // Show the explanation for Life Path Number
- const selectedExplanation = document.getElementById(`lifePath${lifePathNumber}`);
- if (selectedExplanation) {
-     selectedExplanation.style.display = 'block'; 
- }
+    // Show the explanation for Life Path Number
+    const selectedExplanation = document.getElementById(`lifePath${lifePathNumber}`);
+    if (selectedExplanation) {
+        selectedExplanation.style.display = 'block';
+    }
 }
 //---offer tip after user finds out their life path number
 //Function
 function offerTip(lifePathNumber) {
     //Check if tip has already been displayed
-    if(!window.localStorage.getItem(`tip_shown_${lifePathNumber}`)) {
+    if (!window.localStorage.getItem(`tip_shown_${lifePathNumber}`)) {
         const tipText = generateTip(lifePathNumber);
 
         //Document fragment
         const fragment = document.createDocumentFragment();
-        
+
         //Conatainer div for tip prompt
         const containerDiv = document.createElement('div');
         containerDiv.classList.add('tip-container');
@@ -224,6 +224,24 @@ function offerTip(lifePathNumber) {
 
         // Tip prompt shows up after result
         const resultDiv = document.getElementById('result');
-        
+        resultDiv.appendChild(fragment);
+
+        //Event listener for the yes response
+        yesButton.addEventListener('click', function () {
+            showTip(lifePathNumber); //function shows the tip explanation
+            containerDiv.remove(); //removes the prompt once user clicks yes
+            window.localStorage.setItem(`tip_show_${lifePathNumber}`, 'true'); //store that the tip was shown
+
+
+        });
+
+        noButton.addEventListener('click', function () {
+            containerDiv.remove(); //Remove the prompt when user clicks no
+
+        });
+
+
+
     }
 }
+
