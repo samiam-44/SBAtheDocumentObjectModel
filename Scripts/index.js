@@ -74,7 +74,7 @@ submitBtn.addEventListener('click', function (event) {
     }
 
     //Split birthdate into components (mm/dd/yyyy)
-    const [month, day, year] = birthdate.split('-').map(Number);
+    const [year, month, day] = birthdate.split('-').map(Number);
 
     //Calculate by iterating through the split date
     const lifePathNumber = calculateLifePathNumber(day, month, year);
@@ -217,20 +217,21 @@ function offerTip(lifePathNumber) {
         noButton.textContent = 'No..thanks.';
         noButton.classList.add('tip-button');
 
-        //APPEND
+        //APPEND buttons to container
         containerDiv.appendChild(yesButton);
         containerDiv.appendChild(noButton);
         fragment.appendChild(containerDiv);
 
         // Tip prompt shows up after result
-        const resultDiv = document.getElementById('result');
-        resultDiv.appendChild(fragment);
+        const resultDiv = document.getElementById('result');//get result conatiner
+
+        resultDiv.appendChild(fragment);//append tip container to dom
 
         //Event listener for the yes response
         yesButton.addEventListener('click', function () {
-            showTip(lifePathNumber); //function shows the tip explanation
+            showTipDetails(lifePathNumber); //function shows the tip explanation
             containerDiv.remove(); //removes the prompt once user clicks yes
-            window.localStorage.setItem(`tip_show_${lifePathNumber}`, 'true'); //store that the tip was shown
+            window.localStorage.setItem(`tip_shown_${lifePathNumber}`, 'true'); //store that the tip was shown
 
 
         });
@@ -245,3 +246,34 @@ function offerTip(lifePathNumber) {
     }
 }
 
+// Function to generate life path tip based on life path number given
+function generateTip(lifePathNumber) {
+    const tips = {
+        1: "Focus on harnessing your natural leadership abilities. Trust your intuition and take bold steps.",
+        2: "Remember to prioritize self-care while being the peacemaker. Setting boundaries is essential.",
+        3: "Balance your creative pursuits with financial responsibility. Keep a positive outlook in all situations.",
+        4: "Find a balance between your grounded nature and relaxation. Don't let rigidity hold you back.",
+        5: "Embrace your adventurous spirit but also stay grounded to avoid distractions.",
+        6: "Make sure to maintain balance when giving to others. Your self-care matters too.",
+        7: "Embrace your spiritual journey and seek deeper connections to stay centered.",
+        8: "Don't let the pursuit of success overwhelm other aspects of your life. Balance is key.",
+        9: "Focus on giving back to others, but ensure you also take care of your own emotional needs.",
+        11: "Embrace your intuition and spiritual gifts, but practice grounding to avoid overwhelm.",
+        22: "Your ambition is strong, but make sure to pace yourself and focus on long-term impact.",
+        33: "Focus on selfless service and strive to bring balance to your personal life and ambitions."
+    };
+
+    return tips[lifePathNumber] || "Explore your life path for more tips!";
+}
+
+//Function to show tip
+
+function showTipDetails(lifePathNumber) {
+    const tipDetails = document.createElement('div'); //Creates container for tip
+    tipDetails.classList.add('tip-details');
+    tipDetails.innerHTML = `<p><strong>Detailed Tip for Life Path Number ${lifePathNumber}:</strong></p> <p>${generateTip(lifePathNumber)} It is important to stay true to your purpose and not get swayed by external pressures.</p>`;
+
+    //Use DOM relationship (parentNode) to append
+    const resultDiv = document.getElementById('result');//Get result container
+    resultDiv.lastChild?.parentNode?.appendChild(tipDetails);//Append ttip
+}
