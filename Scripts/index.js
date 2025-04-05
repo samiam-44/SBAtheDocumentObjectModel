@@ -54,7 +54,7 @@
     
 // }
 // Cache elements using getElementById
-//  ------------SECOND ATTEMPT
+ //------------SECOND ATTEMPT
 
 const submitBtn = document.getElementById('submit-btn');
 const birthdateInput = document.getElementById('birthdate');
@@ -84,6 +84,7 @@ submitBtn.addEventListener('click', function(event) {
     showLifePathInfo(lifePathNumber); 
     //shows the explanation in the 'lifePathInfo' element
     // lifePathInfo.textContent = numberExplanation(lifePathNumber);
+    offerTip(lifePathNumber);//Offers tip based oon life path number
 });
 
 //Functon to calculate the life path number
@@ -109,7 +110,7 @@ function calculateLifePathNumber(day, month, year) {
 //         const tipDiv = document.createElement('div');
 //         tipDiv.classList.add('tip-container');
 //         tipDiv.innerHTML = `
-//             <p>Would you like a tip for Life Path Number ${lifePathNumber}? <strong>${tipText}</strong></p>
+//            
 //             <button id="tip-btn">Yes, tell me!</button>
 //         `;
 
@@ -117,7 +118,7 @@ function calculateLifePathNumber(day, month, year) {
 //         const resultDiv = document.getElementById('result');
 //         resultDiv.appendChild(tipDiv);
 
-//         // Add event listener to handle the user's response
+//         //event listener to handle the user's response
 //         document.getElementById('tip-btn').addEventListener('click', function() {
 //             showTipDetails(lifePathNumber); // Function to show the detailed tip
 //             tipDiv.remove(); // Remove the tip prompt once user agrees
@@ -188,4 +189,22 @@ function showLifePathInfo(lifePathNumber) {
  if (selectedExplanation) {
      selectedExplanation.style.display = 'block'; 
  }
+}
+//---offer tip after user finds out their life path number
+//Function
+function offerTip(lifePathNumber) {
+    //Check if tip has already been displayed
+    if(!window.localStorage.getItem(`tip_shown_${lifePathNumber}`)) {
+        const tipText = generateTip(lifePathNumber);
+
+        //Document fragment
+        const fragment = document.createDocumentFragment();
+        
+        //Conatainer div for tip prompt
+        const containerDiv = document.createElement('div');
+        containerDiv.classList.add('tip-container');
+        containerDiv.style.marginTop = '20px';
+        containerDiv.innerHTML = `<p>Would you like a helpful tip based on your life path number</p>`;
+        
+    }
 }
