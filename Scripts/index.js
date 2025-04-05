@@ -205,6 +205,25 @@ function offerTip(lifePathNumber) {
         containerDiv.classList.add('tip-container');
         containerDiv.style.marginTop = '20px';
         containerDiv.innerHTML = `<p>Would you like a helpful tip based on your life path number</p>`;
+
+        //yes and no buttons
+        const yesButton = document.createElement('button');
+        yesButton.id = 'tip-btn';
+        yesButton.textContent = 'Yes, enlighten me!';
+        yesButton.style.marginRight = '10px';
+        yesButton.classList.add('tip-button');
+
+        const noButton = document.createElement('button');
+        noButton.textContent = 'No..thanks.';
+        noButton.classList.add('tip-button');
+
+        //APPEND
+        containerDiv.appendChild(yesButton);
+        containerDiv.appendChild(noButton);
+        fragment.appendChild(containerDiv);
+
+        // Tip prompt shows up after result
+        const resultDiv = document.getElementById('result');
         
     }
 }
